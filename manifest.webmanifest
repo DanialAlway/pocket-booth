@@ -1,0 +1,16 @@
+{
+  "name": "Pocket Booth",
+  "short_name": "Pocket Booth",
+  "description": "A photobooth on your phone: film strips, four-cut frames, polaroids and vintage filters.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0d0c",
+  "theme_color": "#0f0d0c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

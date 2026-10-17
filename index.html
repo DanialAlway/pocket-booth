@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pocket Booth</title>
+  <meta name="description" content="Pocket Booth: a photobooth on your phone. Film strips, four-cut frames, polaroids and vintage filters.">
+  <meta name="theme-color" content="#0f0d0c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pocket Booth">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;600;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HOME ============ -->
+  <section id="home" class="screen active">
+    <header class="hero">
+      <div class="brand"><span class="rec"></span>Pocket Booth</div>
+      <h1>Your photobooth,<br><em>right in your pocket.</em></h1>
+      <p>Pick a frame, prop up your phone, and strike a pose. Your strip is ready in seconds.</p>
+      <ol class="steps">
+        <li><b>1</b>Choose a frame</li>
+        <li><b>2</b>Pose for the countdown</li>
+        <li><b>3</b>Save &amp; share</li>
+      </ol>
+    </header>
+
+    <div class="section-head">
+      <h2>Choose your frame</h2>
+      <span id="tplCount"></span>
+    </div>
+    <div id="templates" class="templates"></div>
+
+    <footer class="foot">Photos stay on your phone and are never uploaded.<br>Tip: in Safari tap Share → <b>Add to Home Screen</b> to install.</footer>
+  </section>
+
+  <!-- ============ BOOTH ============ -->
+  <section id="booth" class="screen booth">
+    <div class="bar">
+      <button class="ghost" id="boothBack">‹ Back</button>
+      <div class="bar-title"><b id="boothTitle"></b><small id="boothSub"></small></div>
+      <button class="ghost icon" id="flip" aria-label="Switch camera" title="Switch camera">⟲</button>
+    </div>
+
+    <div class="vf-wrap">
+      <div id="viewfinder" class="viewfinder">
+        <video id="video" playsinline muted autoplay></video>
+        <div id="count" class="count hidden"><div class="num"></div><div class="pose"></div></div>
+        <div id="flash" class="flash"></div>
+        <div id="camError" class="cam-error hidden">
+          <p></p>
+          <label class="btn primary">Upload photos<input type="file" accept="image/*" multiple hidden class="upload-input"></label>
+        </div>
+      </div>
+    </div>
+
+    <div id="dots" class="dots"></div>
+
+    <div class="controls">
+      <div class="chips" id="boothFilters"></div>
+      <div class="row">
+        <div class="seg" id="timerSeg">
+          <button data-t="3">3s</button><button data-t="5">5s</button><button data-t="10">10s</button>
+        </div>
+        <button class="toggle" id="posesToggle">✦ Pose ideas</button>
+      </div>
+      <div class="shutter-row">
+        <label class="side" title="Upload photos from your gallery">
+          <span class="side-icon">▤</span><span>Upload</span>
+          <input type="file" accept="image/*" multiple hidden class="upload-input">
+        </label>
+        <button id="shutter" class="shutter" aria-label="Start"><span></span></button>
+        <div class="side" id="shotInfo"><span class="side-icon" id="shotNum">4</span><span>shots</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="result" class="screen result">
+    <div class="bar">
+      <button class="ghost" id="homeBtn">‹ Frames</button>
+      <div class="bar-title"><b>Your strip</b><small id="resSub"></small></div>
+      <button class="ghost strong" id="saveTop">Save</button>
+    </div>
+
+    <div class="result-body">
+      <div class="out-wrap"><canvas id="out"></canvas></div>
+
+      <div class="panel">
+        <h3>Frame</h3>
+        <div class="chips" id="tplChips"></div>
+
+        <h3>Filter</h3>
+        <div class="chips" id="resFilters"></div>
+
+        <div id="colorBlock">
+          <h3>Color</h3>
+          <div class="swatches" id="swatches"></div>
+        </div>
+
+        <div id="captionBlock">
+          <h3>Caption</h3>
+          <input id="caption" type="text" maxlength="28" placeholder="us ♡" autocomplete="off">
+        </div>
+
+        <div class="row toggles">
+          <button class="toggle" id="dateToggle">Date</button>
+          <button class="toggle" id="grainToggle">Grain &amp; dust</button>
+        </div>
+
+        <h3>Retake a shot <small>tap a photo</small></h3>
+        <div class="thumbs" id="thumbs"></div>
+
+        <div class="actions">
+          <button id="saveBtn" class="btn primary">Save / Share</button>
+          <button id="againBtn" class="btn">Retake all</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="templates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
